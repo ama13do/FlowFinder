@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/components/main_logo_small/main_logo_small_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -9,7 +8,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'auth_create_model.dart';
@@ -210,60 +208,6 @@ class _AuthCreateWidgetState extends State<AuthCreateWidget>
             duration: 600.0.ms,
             begin: Offset(0.0, 80.0),
             end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'containerOnPageLoadAnimation1': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 700.ms),
-          FadeEffect(
-            curve: Curves.bounceOut,
-            delay: 700.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.bounceOut,
-            delay: 700.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
-          ),
-          ScaleEffect(
-            curve: Curves.bounceOut,
-            delay: 700.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.4, 0.4),
-            end: Offset(1.0, 1.0),
-          ),
-        ],
-      ),
-      'containerOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 900.ms),
-          FadeEffect(
-            curve: Curves.bounceOut,
-            delay: 900.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.bounceOut,
-            delay: 900.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
-          ),
-          ScaleEffect(
-            curve: Curves.bounceOut,
-            delay: 900.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.4, 0.4),
-            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -688,35 +632,8 @@ class _AuthCreateWidgetState extends State<AuthCreateWidget>
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               FFButtonWidget(
-                                onPressed: () async {
-                                  logFirebaseEvent(
-                                      'AUTH_CREATE_PAGE_Button-Login_ON_TAP');
-                                  GoRouter.of(context).prepareAuthEvent();
-                                  if (_model.passwordTextController.text !=
-                                      _model
-                                          .passwordConfirmTextController.text) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Passwords don\'t match!',
-                                        ),
-                                      ),
-                                    );
-                                    return;
-                                  }
-
-                                  final user =
-                                      await authManager.createAccountWithEmail(
-                                    context,
-                                    _model.emailAddressTextController.text,
-                                    _model.passwordTextController.text,
-                                  );
-                                  if (user == null) {
-                                    return;
-                                  }
-
-                                  context.goNamedAuth(
-                                      'Main_Home', context.mounted);
+                                onPressed: () {
+                                  print('Button-Login pressed ...');
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   '29ut49wi' /* Create Account */,
@@ -777,103 +694,6 @@ class _AuthCreateWidgetState extends State<AuthCreateWidget>
                             ],
                           ).animateOnPageLoad(
                               animationsMap['rowOnPageLoadAnimation2']!),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'AUTH_CREATE_Container_rjk5lwv9_ON_TAP');
-                                    GoRouter.of(context).prepareAuthEvent();
-                                    final user = await authManager
-                                        .signInWithGoogle(context);
-                                    if (user == null) {
-                                      return;
-                                    }
-
-                                    context.goNamedAuth(
-                                        'Main_Home', context.mounted);
-                                  },
-                                  child: Container(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).accent1,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.google,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation1']!),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'AUTH_CREATE_Container_hmm1h1o4_ON_TAP');
-                                    GoRouter.of(context).prepareAuthEvent();
-                                    final user = await authManager
-                                        .signInWithApple(context);
-                                    if (user == null) {
-                                      return;
-                                    }
-
-                                    context.goNamedAuth(
-                                        'Main_Home', context.mounted);
-                                  },
-                                  child: Container(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).accent1,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.apple,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation2']!),
-                              ),
-                            ],
-                          ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(

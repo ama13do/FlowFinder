@@ -1,11 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
-import '/components/modals/edit_profile_photo/edit_profile_photo_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -123,24 +120,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       FFButtonWidget(
-                        onPressed: () async {
-                          logFirebaseEvent(
-                              'EDIT_PROFILE_CHANGE_PHOTO_BTN_ON_TAP');
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            barrierColor: FlutterFlowTheme.of(context).accent4,
-                            context: context,
-                            builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: Container(
-                                  height: 360.0,
-                                  child: EditProfilePhotoWidget(),
-                                ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
+                        onPressed: () {
+                          print('Button pressed ...');
                         },
                         text: FFLocalizations.of(context).getText(
                           'mk8nnw94' /* Change Photo */,
@@ -271,30 +252,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.05),
                   child: FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent('EDIT_PROFILE_SAVE_CHANGES_BTN_ON_TAP');
-
-                      await currentUserReference!.update(createUsersRecordData(
-                        displayName: _model.yourNameTextController.text,
-                      ));
-                      context.pop();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'You successfully updated your profile information!',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          duration: Duration(milliseconds: 4000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
-                        ),
-                      );
+                    onPressed: () {
+                      print('Button pressed ...');
                     },
                     text: FFLocalizations.of(context).getText(
                       'rr8ksatz' /* Save Changes */,
