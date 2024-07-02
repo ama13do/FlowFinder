@@ -1,6 +1,7 @@
 //
-//  Generated file. Do not edit.
+//  Generated file. Do not edit. generar archivo si no existe 
 //
+//Amado
 
 import FlutterMacOS
 import Foundation
